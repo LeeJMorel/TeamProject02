@@ -93,7 +93,7 @@ public class ArrayList<E> implements List<E> {
         elementData[index] = value;
         size++;
     }
-
+ //------------------------------------------------Harold's Methods Start-----------------------------------------------------------
     // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
     // post: removes value at the given index, shifting subsequent values left
     public void remove(int index) {
@@ -104,6 +104,8 @@ public class ArrayList<E> implements List<E> {
         elementData[size - 1] = null;
         size--;
     }
+    
+ ----
 
     // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
     // post: replaces the value at the given index with the given value
@@ -152,10 +154,12 @@ public class ArrayList<E> implements List<E> {
         }
     }
 
+     //------------------------------------------------Andy's Methods Start-----------------------------------------------------------
     private class ArrayListIterator implements Iterator<E> {
         private int position;           // current position within the list
         private boolean removeOK;       // whether it's okay to remove now
 
+        
         // post: constructs an iterator for the given list
         public ArrayListIterator() {
             position = 0;
