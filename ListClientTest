@@ -1,0 +1,32 @@
+//compiler directive to eliminate superfluous warnings.
+@SuppressWarnings("unchecked")
+
+public class ListClientTest {
+    public static void main(String[] args) {
+        //tests our methods in AbstractList
+        ArrayList<Integer> list1 = new ArrayList<Integer>();
+        System.out.println("The list size is empty. " + list1.isEmpty());
+        processList(list1);
+        System.out.println("The list size is empty. " + list1.isEmpty());
+        System.out.println("The list size is: " + list1.size());
+        System.out.println();
+
+        //tests our methods in linked list
+        LinkedList<Integer> list2 = new LinkedList<Integer>();
+        System.out.println("The list size is empty. " + list2.isEmpty());
+        processList(list2);
+        System.out.println("The list size is empty. " + list2.isEmpty());
+        System.out.println("The list size is: " + list2.size());
+    }
+
+    public static void processList(List list) {
+        list.add(42);
+        list.add(18);
+        list.add(27);
+        list.add(93);
+        System.out.println(list);
+        list.remove(2);
+        list.remove(0);
+        System.out.println(list);
+    }
+}
