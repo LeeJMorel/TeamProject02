@@ -1,4 +1,119 @@
+// List client test 
+
+@SuppressWarnings("unchecked")
+
+public class ListClientTest {
+	public static void main(String[] args) {
+		arraylist_isempty();
+		linkedlist_isempty();
+		arraylist_remove();
+		linkedlist_remove();
+		arraylist_set();
+		linkedlist_set();
+		arraylist_size();
+		linkedlist_size();
+		arraylist_contains();
+		linkedlist_contains();
+	 
+    }
+	
+	public static void linkedlist_contains() {
+		// TODO Auto-generated method stub
+		 AbstractList<Integer> list1 = new LinkedList<Integer>();
+	        processList(list1);
+	        System.out.println("The list contains: " + list1.contains(42));
+
+	        System.out.println();
+	}
+
+	public static void arraylist_contains() {
+		// TODO Auto-generated method stub
+		 AbstractList<Integer> list1 = new ArrayList<Integer>();
+	        processList(list1);
+	        System.out.println("The list contains: " + list1.contains(42));
+
+	        System.out.println();
+	}
+
+	public static void linkedlist_size() {
+		// TODO Auto-generated method stub
+		AbstractList<Integer> list1 = new LinkedList<Integer>();
+        processList(list1);
+        System.out.println("The list size is: " + list1.size());
+
+        System.out.println();
+	}
+
+	public static void arraylist_size() {
+		// TODO Auto-generated method stub
+				AbstractList<Integer> list1 = new ArrayList<Integer>();
+		        processList(list1);
+		        System.out.println("The list size is: " + list1.size());
+
+		        System.out.println();
+	}
+
+	public static void linkedlist_set() {
+		
+		AbstractList<Integer> list1 = new LinkedList<Integer>();
+        processList(list1);
+        System.out.println("The list size is: " + list1.set());
+
+        System.out.println();
+	}
+
+	public static void arraylist_set() {
+		// TODO Auto-generated method stub
+		AbstractList<Integer> list1 = new ArrayList<Integer>();
+        processList(list1);
+        System.out.println("The list size is: " + list1.set());
+
+        System.out.println();
+	}
+
+	public static void linkedlist_remove() {
+		// TODO Auto-generated method stub
+		
+
+        System.out.println();
+	}
+
+	public static void arraylist_remove() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void arraylist_isempty() {
+		//tests our methods in AbstractList
+        AbstractList<Integer> list1 = new ArrayList<Integer>();
+        System.out.println("The list size is empty. " + list1.isEmpty());
+        processList(list1);
+        System.out.println("The list size is empty. " + list1.isEmpty());
+        System.out.println("The list size is: " + list1.size());
+        System.out.println();
+	}
+	public static void linkedlist_isempty() {
+		 //tests our methods in linked list
+        AbstractList<Integer> list2 = new LinkedList<Integer>();
+        System.out.println("The list size is empty. " + list2.isEmpty());
+        processList(list2);
+        System.out.println("The list size is empty. " + list2.isEmpty());
+        System.out.println("The list size is: " + list2.size());
+	}
+
+    public static void processList(List list) {
+        
+    	list.add(42);
+        list.add(18);
+        list.add(27);
+        list.add(93);
+ 
+    }
+}
+
+// original list test just in case
 //compiler directive to eliminate superfluous warnings.
+/*
 @SuppressWarnings("unchecked")
 
 public class ListClientTest {
@@ -30,3 +145,4 @@ public class ListClientTest {
         System.out.println(list);
     }
 }
+*/
