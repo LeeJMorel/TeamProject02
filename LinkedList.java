@@ -5,18 +5,12 @@ import java.util.*;
 public class LinkedList<E> extends AbstractList<E> implements List<E>{
     private ListNode<E> front;  // first value in the list
     private ListNode<E> back;   // last value in the list
-    private int size;           // current number of elements
 
     // post: constructs an empty list
     public LinkedList() {
         front = new ListNode<E>(null);
         back = new ListNode<E>(null);
         clear();
-    }
-
-    // post: returns the current number of elements in the list
-    public int size() {
-        return size;
     }
 
     // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
@@ -27,51 +21,10 @@ public class LinkedList<E> extends AbstractList<E> implements List<E>{
         return current.data;
     }
 
-    // post: creates a comma-separated, bracketed version of the list
-    public String toString() {
-        if (size == 0) {
-            return "[]";
-        } else {
-            String result = "[" + front.next.data;
-            ListNode<E> current = front.next.next;
-            while (current != back) {
-                result += ", " + current.data;
-                current = current.next;
-            }
-            result += "]";
-            return result;
-        }
-    }
-
-    // post : returns the position of the first occurrence of the given
-    //        value (-1 if not found)
-    public int indexOf(E value) {
-        int index = 0;
-        ListNode<E> current = front.next;
-        while (current !=  back) {
-            if (current.data.equals(value)) {
-                return index;
-            }
-            index++;
-            current = current.next;
-        }
-        return -1;
-    }
-
-    // post: returns true if list is empty, false otherwise
-    public boolean isEmpty() {
-        return size == 0;
-    }
-
-    // post: returns true if the given value is contained in the list,
-    //       false otherwise
-    public boolean contains(E value) {
-        return indexOf(value) >= 0;
-    }
 
     // post: appends the given value to the end of the list
     public void add(E value) {
-        add(size, value);
+        add(super(size), value);
     }
 
     // pre: 0 <= index <= size() (throws IndexOutOfBoundsException if not)
@@ -85,25 +38,9 @@ public class LinkedList<E> extends AbstractList<E> implements List<E>{
         ListNode<E> newNode = new ListNode<E>(value, current.next, current);
         current.next = newNode;
         newNode.next.prev = newNode;
-        size++;
+        super(size)++;
     }
 
-    // post: appends all values in the given list to the end of this list
-    public void addAll(List<E> other) {
-        for (E value: other) {
-            add(value);
-        }
-    }
-
-    // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
-    // post: removes value at the given index, shifting subsequent values left
-    public void remove(int index) {
-        checkIndex(index);
-        ListNode<E> current = nodeAt(index - 1);
-        current.next = current.next.next;
-        current.next.prev = current;
-        size--;
-    }
 
     // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
     // post: replaces the value at the given index with the given value
@@ -113,12 +50,6 @@ public class LinkedList<E> extends AbstractList<E> implements List<E>{
         current.data = value;
     }
 
-    // post: list is empty
-    public void clear() {
-        front.next = back;
-        back.prev = front;
-        size = 0;
-    }
 
     // post: returns an iterator for this list
     public Iterator<E> iterator() {
@@ -145,13 +76,6 @@ public class LinkedList<E> extends AbstractList<E> implements List<E>{
         return current;
     }
 
-    // post: throws an IndexOutOfBoundsException if the given index is
-    //       not a legal index of the current list
-    private void checkIndex(int index) {
-        if (index < 0 || index >= size()) {
-            throw new IndexOutOfBoundsException("index: " + index);
-        }
-    }
 
     private static class ListNode<E> {
         public E data;         // data stored in this node
@@ -208,7 +132,7 @@ public class LinkedList<E> extends AbstractList<E> implements List<E>{
             ListNode<E> prev2 = current.prev.prev;
             prev2.next = current;
             current.prev = prev2;
-            size--;
+            super(size)--;
             removeOK = false;
         }
     }
