@@ -1,5 +1,12 @@
+/*CS211 SPRING 2020, Created: 5/20/20, Lee Janzen, Harold Pham, Andy Zhong
+This is the Test client for our AbstractList class.
+Created for ch16, programming project 3.*/
+
 //compiler directive to eliminate superfluous warnings.
 @SuppressWarnings("unchecked")
+
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class ListClientTest {
 	public static void main(String[] args) {
