@@ -16,7 +16,7 @@ public class LinkedList<E> extends AbstractList<E> implements List<E>{
     // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
     // post: returns the value at the given index in the list
     public E get(int index) {
-        checkIndex(index);
+        super.checkIndex(index);
         ListNode<E> current = nodeAt(index);
         return current.data;
     }
@@ -38,14 +38,14 @@ public class LinkedList<E> extends AbstractList<E> implements List<E>{
         ListNode<E> newNode = new ListNode<E>(value, current.next, current);
         current.next = newNode;
         newNode.next.prev = newNode;
-        increseSize();
+        increaseSize();
     }
 
 
     // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
     // post: replaces the value at the given index with the given value
     public void set(int index, E value) {
-        checkIndex(index);
+        super.checkIndex(index);
         ListNode<E> current = nodeAt(index);
         current.data = value;
     }
