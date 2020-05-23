@@ -26,7 +26,7 @@ public class ArrayList<E> extends AbstractList<E> implements List<E>{
     // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
     // post: returns the value at the given index in the list
     public E get(int index) {
-        checkIndex(index);
+        super.checkIndex(index);
         return elementData[index];
     }
 
@@ -58,7 +58,7 @@ public class ArrayList<E> extends AbstractList<E> implements List<E>{
     // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
     // post: replaces the value at the given index with the given value
     public void set(int index, E value) {
-        checkIndex(index);
+        super.checkIndex(index);
         elementData[index] = value;
     }
 
@@ -117,7 +117,7 @@ public class ArrayList<E> extends AbstractList<E> implements List<E>{
             if (!removeOK) {
                 throw new IllegalStateException();
             }
-            ArrayList.this.remove(position - 1);
+            super.remove(position - 1);
             position--;
             removeOK = false;
         }
