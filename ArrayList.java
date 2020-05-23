@@ -95,7 +95,7 @@ public class ArrayList<E> extends AbstractList<E> implements List<E>{
 
         // post: returns true if there are more elements left, false otherwise
         public boolean hasNext() {
-            return position < this.size;
+            return position < super.size;
         }
 
         // pre : hasNext() (throws NoSuchElementException if not)
