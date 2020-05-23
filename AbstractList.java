@@ -5,14 +5,33 @@ import java.util.*;
 import java.io.*;
 
 public abstract class AbstractList<E> implements List<E> {
-   private int size;        // current number of elements in the list
-
-    // post: returns true if the given value is contained in the list,
-    //       false otherwise
-    public boolean contains(E value) {
-        return indexOf(value) >= 0;
+   protected int size;        // current number of elements in the list
+   
+   //test 1
+    // post: returns true if list is empty, false otherwise
+    public boolean isEmpty() {
+        return size == 0;
     }
-
+    
+    //test 2
+    // post: returns the current number of elements in the list
+    public int size() {
+        return size;
+    }
+    
+    // post: returns the current number of elements in the list + 1 increment
+    public int increaseSize() {
+        size++;
+        return size;
+    }
+    
+    // post: returns the current number of elements in the list - 1 increment
+    public int decreaseSize() {
+        size--;
+        return size;
+    }
+    
+    //test 3
     // post : returns the position of the first occurrence of the given
     //        value (-1 if not found)
     public int indexOf(E value) {
@@ -28,17 +47,15 @@ public abstract class AbstractList<E> implements List<E> {
          }
          return -1;
     }
-    
-    // post: returns true if list is empty, false otherwise
-    public boolean isEmpty() {
-        return size == 0;
+
+   //test 4
+    // post: returns true if the given value is contained in the list,
+    //       false otherwise
+    public boolean contains(E value) {
+        return indexOf(value) >= 0;
     }
     
-    // post: returns the current number of elements in the list
-    public int size() {
-        return size;
-    }
-    
+    //test 5
     // post: creates a comma-separated, bracketed version of the list
     public String toString() {
         if (size == 0) {
@@ -54,35 +71,39 @@ public abstract class AbstractList<E> implements List<E> {
         }
     }
     
-    // post: throws an IndexOutOfBoundsException if the given index is
-    //       not a legal index of the current list
-    private void checkIndex(int index) {
-        if (index < 0 || index >= size()) {
-            throw new IndexOutOfBoundsException("index: " + index);
-        }
-    }
-    
-    // post: list is empty
-    public void clear() {
-      Iterator<E> i = this.iterator();
-        while (i.hasNext()) {
-            i.remove()
-        }
-        size = 0;
-    }
-    
+    /*/test6
     // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
     // post: removes value at the given index, shifting subsequent values left
     public void remove(int index) {
         checkIndex(index);
         find the thing at the index and remove it
         size--;
+    }*/
+    
+    //test 7
+    // post: list is empty
+    public void clear() {
+      Iterator<E> i = this.iterator();
+        while (i.hasNext()) {
+            i.remove();
+        }
+        size = 0;
     }
     
-        // post: appends all values in the given list to the end of this list
+    
+   // post: appends all values in the given list to the end of this list
     public void addAll(List<E> other) {
         for (E value: other) {
             add(value);
+        }
+    }
+    
+    
+    // post: throws an IndexOutOfBoundsException if the given index is
+    //       not a legal index of the current list
+    private void checkIndex(int index) {
+        if (index < 0 || index >= size()) {
+            throw new IndexOutOfBoundsException("index: " + index);
         }
     }
 
