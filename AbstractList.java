@@ -71,14 +71,19 @@ public abstract class AbstractList<E> implements List<E> {
         }
     }
     
-    /*/test6
+    //test6
     // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
     // post: removes value at the given index, shifting subsequent values left
     public void remove(int index) {
         checkIndex(index);
-        find the thing at the index and remove it
+        Iterator<E> i = this.iterator();
+        
+        for (int j = 0; j >= index; j++) {
+             i.next();
+        }
+        i.remove();
         size--;
-    }*/
+    }
     
     //test 7
     // post: list is empty
@@ -101,7 +106,7 @@ public abstract class AbstractList<E> implements List<E> {
     
     // post: throws an IndexOutOfBoundsException if the given index is
     //       not a legal index of the current list
-    private void checkIndex(int index) {
+    protected void checkIndex(int index) {
         if (index < 0 || index >= size()) {
             throw new IndexOutOfBoundsException("index: " + index);
         }
