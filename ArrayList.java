@@ -3,6 +3,7 @@ import java.util.*;
 public class ArrayList<E> extends AbstractList<E> implements List<E>{
     private E[] elementData; // list of values
 
+
     public static final int DEFAULT_CAPACITY = 100;
 
     // pre : capacity >= 0 (throws IllegalArgumentException if not)
@@ -13,17 +14,15 @@ public class ArrayList<E> extends AbstractList<E> implements List<E>{
             throw new IllegalArgumentException("capacity: " + capacity);
         }
         elementData = (E[]) new Object[capacity];
-        super(size) = 0;
-        
-        //ATTENTION: you were transitioning all the size functions to the super class
-    }
+        this.size = 0;
+     }
 
     // post: constructs an empty list of default capacity
     public ArrayList() {
         this(DEFAULT_CAPACITY);
     }
 
-
+    @Override
     // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
     // post: returns the value at the given index in the list
     public E get(int index) {
@@ -34,24 +33,24 @@ public class ArrayList<E> extends AbstractList<E> implements List<E>{
 
     // post: appends the given value to the end of the list
     public void add(E value) {
-        ensureCapacity(size + 1);
-        elementData[size] = value;
-        super(size)++;
+        ensureCapacity(increaseSize());
+        elementData[this.size] = value;
+        increaseSize();
     }
 
     // pre : 0 <= index <= size() (throws IndexOutOfBoundsException if not)
     // post: inserts the given value at the given index, shifting subsequent
     //       values right
     public void add(int index, E value) {
-        if (index < 0 || index > size) {
+        if (index < 0 || index > this.size) {
             throw new IndexOutOfBoundsException("index: " + index);
         }
         ensureCapacity(size + 1);
-        for (int i = size; i >= index + 1; i--) {
+        for (int i = this.size; i >= index + 1; i--) {
             elementData[i] = elementData[i - 1];
         }
         elementData[index] = value;
-        super(size)++;
+        increaseSize();
     }
  //------------------------------------------------Harold's Methods Start-----------------------------------------------------------
  
@@ -96,7 +95,7 @@ public class ArrayList<E> extends AbstractList<E> implements List<E>{
 
         // post: returns true if there are more elements left, false otherwise
         public boolean hasNext() {
-            return position < size();
+            return position < this.size;
         }
 
         // pre : hasNext() (throws NoSuchElementException if not)
