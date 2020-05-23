@@ -24,21 +24,21 @@ public class LinkedList<E> extends AbstractList<E> implements List<E>{
 
     // post: appends the given value to the end of the list
     public void add(E value) {
-        add(super(size), value);
+        add(this.size, value);
     }
 
     // pre: 0 <= index <= size() (throws IndexOutOfBoundsException if not)
     // post: inserts the given value at the given index, shifting subsequent
     //       values right
     public void add(int index, E value) {
-        if (index < 0 || index > size) {
+        if (index < 0 || index > this.size) {
             throw new IndexOutOfBoundsException("index: " + index);
         }
         ListNode<E> current = nodeAt(index - 1);
         ListNode<E> newNode = new ListNode<E>(value, current.next, current);
         current.next = newNode;
         newNode.next.prev = newNode;
-        super(size)++;
+        increseSize();
     }
 
 
@@ -62,14 +62,14 @@ public class LinkedList<E> extends AbstractList<E> implements List<E>{
     //       is closer.
     private ListNode<E> nodeAt(int index) {
         ListNode<E> current;
-        if (index < size / 2) {
+        if (index < this.size / 2) {
             current = front;
             for (int i = 0; i < index + 1; i++) {
                 current = current.next;
             }
         } else {
             current = back;
-            for (int i = size; i >= index + 1; i--) {
+            for (int i = this.size; i >= index + 1; i--) {
                 current = current.prev;
             }
         }
@@ -132,7 +132,7 @@ public class LinkedList<E> extends AbstractList<E> implements List<E>{
             ListNode<E> prev2 = current.prev.prev;
             prev2.next = current;
             current.prev = prev2;
-            super(size)--;
+            decreaseSize();
             removeOK = false;
         }
     }
