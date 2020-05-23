@@ -1,148 +1,89 @@
-// List client test 
-
+//compiler directive to eliminate superfluous warnings.
 @SuppressWarnings("unchecked")
 
 public class ListClientTest {
 	public static void main(String[] args) {
-		arraylist_isempty();
-		linkedlist_isempty();
-		arraylist_remove();
-		linkedlist_remove();
-		arraylist_set();
-		linkedlist_set();
-		arraylist_size();
-		linkedlist_size();
-		arraylist_contains();
-		linkedlist_contains();
-	 
-    }
-	
-	public static void linkedlist_contains() {
-		// TODO Auto-generated method stub
-		 AbstractList<Integer> list1 = new LinkedList<Integer>();
-	        processList(list1);
-	        System.out.println("The list contains: " + list1.contains(42));
+		// declares our integer lists
+		ArrayList<Integer> list1 = new ArrayList<Integer>();
+      LinkedList<Integer> list2 = new LinkedList<Integer>();
+      
+      // declares our string lists
+		ArrayList<Integer> list3 = new ArrayList<Integer>();
+      LinkedList<Integer> list4 = new LinkedList<Integer>();
+      
+      // tests our AbstractList methods in ArrayList
+      System.out.println("Testing for ArrayList."); 
+		System.out.println("Test 1: The ArrayList is empty: " + list1.isEmpty()); //test: true
+      System.out.println("Test 2: The ArrayList size is: " + list1.size()); //test: null
+		processIntList(list1);
+      processStringList(list3);
+      System.out.println("\nInt based testing for ArrayList below:"); 
+      testIntList(list1);
+      System.out.println("\nString based testing for ArrayList below:"); 
+      testStringList(list3);
+      System.out.println("\n"); 
 
-	        System.out.println();
-	}
-
-	public static void arraylist_contains() {
-		// TODO Auto-generated method stub
-		 AbstractList<Integer> list1 = new ArrayList<Integer>();
-	        processList(list1);
-	        System.out.println("The list contains: " + list1.contains(42));
-
-	        System.out.println();
-	}
-
-	public static void linkedlist_size() {
-		// TODO Auto-generated method stub
-		AbstractList<Integer> list1 = new LinkedList<Integer>();
-        processList(list1);
-        System.out.println("The list size is: " + list1.size());
-
-        System.out.println();
-	}
-
-	public static void arraylist_size() {
-		// TODO Auto-generated method stub
-				AbstractList<Integer> list1 = new ArrayList<Integer>();
-		        processList(list1);
-		        System.out.println("The list size is: " + list1.size());
-
-		        System.out.println();
-	}
-
-	public static void linkedlist_set() {
-		
-		AbstractList<Integer> list1 = new LinkedList<Integer>();
-        processList(list1);
-        System.out.println("The list size is: " + list1.set());
-
-        System.out.println();
-	}
-
-	public static void arraylist_set() {
-		// TODO Auto-generated method stub
-		AbstractList<Integer> list1 = new ArrayList<Integer>();
-        processList(list1);
-        System.out.println("The list size is: " + list1.set());
-
-        System.out.println();
-	}
-
-	public static void linkedlist_remove() {
-		// TODO Auto-generated method stub
 		
 
-        System.out.println();
+      // tests our AbstractList methods in LinkedList
+      System.out.println("Testing for LinkedList."); 
+		System.out.println("Test 1: The LinkedList is empty: " + list2.isEmpty()); //test: true
+      System.out.println("Test 2: The LinkedList size is: " + list2.size()); //test: null
+		processIntList(list2);
+      processStringList(list4);
+      System.out.println("\nInt based testing for LinkedList below:"); 
+      testIntList(list2);
+      System.out.println("\nString based testing for LinkedList below:"); 
+      testStringList(list4);
+      
+
 	}
 
-	public static void arraylist_remove() {
-		// TODO Auto-generated method stub
-		
-	}
+	public static void processIntList(List list) {
+		list.add(42);
+		list.add(18);
+		list.add(27);
+		list.add(93);
 
-	public static void arraylist_isempty() {
-		//tests our methods in AbstractList
-        AbstractList<Integer> list1 = new ArrayList<Integer>();
-        System.out.println("The list size is empty. " + list1.isEmpty());
-        processList(list1);
-        System.out.println("The list size is empty. " + list1.isEmpty());
-        System.out.println("The list size is: " + list1.size());
-        System.out.println();
 	}
-	public static void linkedlist_isempty() {
-		 //tests our methods in linked list
-        AbstractList<Integer> list2 = new LinkedList<Integer>();
-        System.out.println("The list size is empty. " + list2.isEmpty());
-        processList(list2);
-        System.out.println("The list size is empty. " + list2.isEmpty());
-        System.out.println("The list size is: " + list2.size());
-	}
+   
+   public static void processStringList(List list) {
+		list.add("apple");
+		list.add("pear");
+		list.add("cherry");
+		list.add("orange");
 
-    public static void processList(List list) {
-        
-    	list.add(42);
-        list.add(18);
-        list.add(27);
-        list.add(93);
- 
-    }
+	}
+   
+   public static void testIntList(List list) {
+		System.out.println("Test 5: The List converted to string (42,18,27,93): ");
+      System.out.println(list.toString());
+      System.out.println("Test 1: The List is empty. " + list.isEmpty()); //test: false
+		System.out.println("Test 3: The List contains 93 at index: " + list.indexOf(93)); //test: 3
+		System.out.println("Test 2: The List size is: " + list.size()); //test: 4
+		System.out.println("Test 4: List contains 42: " + list.contains(42)); //test: true
+      System.out.println("Test 4: List contains 2: " + list.contains(2)); //test: false
+		//list.remove(2);
+		System.out.println("Test 6: List after removing number at index 2"); //test:
+		System.out.println(list.toString());
+      list.clear();
+		System.out.println("Test 7: The List is empty(clear method). " + list.isEmpty()); //test: true
+      System.out.println(); 
+	}
+   
+   public static void testStringList(List list) {
+      System.out.println("Test 5: The List converted to string (apple, pear, cherry, orange): ");
+		System.out.println(list.toString());
+      System.out.println("Test 1: The List is empty. " + list.isEmpty()); //test: false
+		System.out.println("Test 3: The List contains cherry at index: " + list.indexOf("cherry")); //test: 3
+		System.out.println("Test 2: The List size is: " + list.size()); //test: 4
+		System.out.println("Test 4: List contains pear: " + list.contains("pear")); //test: true
+      System.out.println("Test 4: List contains grape: " + list.contains("grape")); //test: false
+		list.remove(2);
+		System.out.println("Test 6: List after removing cherry at index 2"); //test:
+		System.out.println(list.toString());
+      list.clear();
+		System.out.println("Test 7: The List is empty(clear method). " + list.isEmpty()); //test: true
+      System.out.println(); 
+	}
 }
-
-// original list test just in case
-//compiler directive to eliminate superfluous warnings.
-/*
-@SuppressWarnings("unchecked")
-
-public class ListClientTest {
-    public static void main(String[] args) {
-        //tests our methods in AbstractList
-        ArrayList<Integer> list1 = new ArrayList<Integer>();
-        System.out.println("The list size is empty. " + list1.isEmpty());
-        processList(list1);
-        System.out.println("The list size is empty. " + list1.isEmpty());
-        System.out.println("The list size is: " + list1.size());
-        System.out.println();
-
-        //tests our methods in linked list
-        LinkedList<Integer> list2 = new LinkedList<Integer>();
-        System.out.println("The list size is empty. " + list2.isEmpty());
-        processList(list2);
-        System.out.println("The list size is empty. " + list2.isEmpty());
-        System.out.println("The list size is: " + list2.size());
-    }
-
-    public static void processList(List list) {
-        list.add(42);
-        list.add(18);
-        list.add(27);
-        list.add(93);
-        System.out.println(list);
-        list.remove(2);
-        list.remove(0);
-        System.out.println(list);
-    }
-}
-*/
