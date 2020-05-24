@@ -117,7 +117,11 @@ public class ArrayList<E> extends AbstractList<E> implements List<E>{
             if (!removeOK) {
                 throw new IllegalStateException();
             }
-            super.remove(position - 1);
+            for (int i = position ; i < size - 1; i++) {
+            elementData[i] = elementData[i + 1];
+            }
+            elementData[size - 1] = null;
+            decreaseSize();
             position--;
             removeOK = false;
         }
