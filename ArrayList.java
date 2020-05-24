@@ -113,12 +113,15 @@ public class ArrayList<E> extends AbstractList<E> implements List<E>{
         // pre : next() has been called without a call on remove (throws
         //       IllegalStateException if not)
         // post: removes the last element returned by the iterator
-        public void remove() {
-            if (!removeOK) {
+        public void remove() 
+        {
+            if (!removeOK) 
+            {
                 throw new IllegalStateException();
             }
-            for (int i = position ; i < size - 1; i++) {
-            elementData[i] = elementData[i + 1];
+            for (int i = position ; i < size - 1; i++) 
+            {
+            	elementData[i] = elementData[i + 1];
             }
             elementData[size - 1] = null;
             decreaseSize();
