@@ -37,7 +37,7 @@ public abstract class AbstractList<E> implements List<E> {
     public int indexOf(E value) {
         Iterator<E> i = this.iterator();
         int index = 0;
-        
+
         while (i.hasNext()){
              if (i.next() == value){
                  return index;
@@ -95,13 +95,6 @@ public abstract class AbstractList<E> implements List<E> {
         size = 0;
     }
     
-    
-   // post: appends all values in the given list to the end of this list
-    public void addAll(List<E> other) {
-        for (E value: other) {
-            add(value);
-        }
-    }
     
     
     // post: throws an IndexOutOfBoundsException if the given index is
