@@ -5,12 +5,6 @@ import java.util.*;
 
 public abstract class AbstractList<E> implements List<E> {
     protected int size;        // current number of elements in the list
-   
-    // post: returns true if list is empty, false otherwise
-    public boolean isEmpty() 
-    {
-        return size == 0;
-    }
     
     // post: returns the current number of elements in the list
     public int size() 
@@ -51,12 +45,52 @@ public abstract class AbstractList<E> implements List<E> {
          }
          return -1;
     }
+    
+    // post: returns true if list is empty, false otherwise
+    public boolean isEmpty() 
+    {
+        return size == 0;
+    }
 
     // post: returns true if the given value is contained in the list, false otherwise.  
     public boolean contains(E value) 
     {
         return indexOf(value) >= 0;
     }
+    
+    /*/cannot exist
+    public E get(int index) 
+    {
+        throw new UnsupportedOperationException();
+    }
+    
+    // cannot exist
+    public void add(E value) 
+    {
+        throw new UnsupportedOperationException();
+    }
+    
+    // cannot exist
+    public void add(int index, E value) 
+    {
+        throw new UnsupportedOperationException();
+    }
+    
+    // cannot exist
+    public E remove(int index) {
+        throw new UnsupportedOperationException();
+    }
+    
+    // cannot exist
+    public E set(int index, E element) {
+        throw new UnsupportedOperationException();
+    }
+    
+    // cannot exist
+    public void clear() 
+    {
+        throw new UnsupportedOperationException();
+    }*/
     
     // post: creates a comma-separated, bracketed version of the list
     public String toString() 
