@@ -2,7 +2,6 @@
 This is the Test client for our AbstractList class.
 Created for ch16, programming project 3.*/
 
-
 public class ListClientTest {
 	public static void main(String[] args) 
 	{
@@ -98,6 +97,7 @@ public class ListClientTest {
 
 	}
    
+
    public static <E> void testIntList(AbstractList<Integer> list) 
    {
 	   
@@ -123,7 +123,6 @@ public class ListClientTest {
       {
         System.out.println("\n\n\tTest 8: The List is empty(clear method). " + e); //test: true
       }	
-
 	}
    
    

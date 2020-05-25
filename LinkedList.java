@@ -2,7 +2,7 @@
 
 import java.util.*;
 
-public class LinkedList<E> extends AbstractList<E> implements List<E>{
+public class LinkedList<E> extends AbstractList<E> implements List<E> {
     private ListNode<E> front;  // first value in the list
     private ListNode<E> back;   // last value in the list
 
@@ -12,6 +12,7 @@ public class LinkedList<E> extends AbstractList<E> implements List<E>{
         back = new ListNode<E>(null);
         clear();
     }
+
 
     // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
     // post: returns the value at the given index in the list
@@ -41,15 +42,37 @@ public class LinkedList<E> extends AbstractList<E> implements List<E>{
         increaseSize();
     }
 
+    // post: appends all values in the given list to the end of this list
+    public void addAll(List<E> other) {
+        for (E value: other) {
+            add(value);
+        }
+    }
+
+    // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
+    // post: removes value at the given index, shifting subsequent values left
+    public void remove(int index) {
+        checkIndex(index);
+        ListNode<E> current = nodeAt(index - 1);
+        current.next = current.next.next;
+        current.next.prev = current;
+        decreaseSize();
+    }
 
     // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
     // post: replaces the value at the given index with the given value
     public void set(int index, E value) {
-        super.checkIndex(index);
+        checkIndex(index);
         ListNode<E> current = nodeAt(index);
         current.data = value;
     }
 
+    // post: list is empty
+    public void clear() {
+        front.next = back;
+        back.prev = front;
+        this.size = 0;
+    }
 
     // post: returns an iterator for this list
     public Iterator<E> iterator() {
@@ -62,7 +85,7 @@ public class LinkedList<E> extends AbstractList<E> implements List<E>{
     //       is closer.
     private ListNode<E> nodeAt(int index) {
         ListNode<E> current;
-        if (index < this.size / 2) {
+        if (index < size / 2) {
             current = front;
             for (int i = 0; i < index + 1; i++) {
                 current = current.next;

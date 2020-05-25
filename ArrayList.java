@@ -1,8 +1,9 @@
+// Class ArrayList<E> can be used to store a list of values of type E.
+
 import java.util.*;
 
-public class ArrayList<E> extends AbstractList<E> implements List<E>{
+public class ArrayList<E> extends AbstractList<E> implements List<E> {
     private E[] elementData; // list of values
-
 
     public static final int DEFAULT_CAPACITY = 100;
 
@@ -15,14 +16,14 @@ public class ArrayList<E> extends AbstractList<E> implements List<E>{
         }
         elementData = (E[]) new Object[capacity];
         this.size = 0;
-     }
+    }
 
     // post: constructs an empty list of default capacity
     public ArrayList() {
         this(DEFAULT_CAPACITY);
     }
 
-    @Override
+
     // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
     // post: returns the value at the given index in the list
     public E get(int index) {
@@ -33,7 +34,7 @@ public class ArrayList<E> extends AbstractList<E> implements List<E>{
 
     // post: appends the given value to the end of the list
     public void add(E value) {
-        ensureCapacity(increaseSize());
+        ensureCapacity(this.size + 1);
         elementData[this.size] = value;
         increaseSize();
     }
@@ -45,21 +46,45 @@ public class ArrayList<E> extends AbstractList<E> implements List<E>{
         if (index < 0 || index > this.size) {
             throw new IndexOutOfBoundsException("index: " + index);
         }
-        ensureCapacity(size + 1);
+        ensureCapacity(this.size + 1);
         for (int i = this.size; i >= index + 1; i--) {
             elementData[i] = elementData[i - 1];
         }
         elementData[index] = value;
         increaseSize();
     }
- //------------------------------------------------Harold's Methods Start-----------------------------------------------------------
- 
+
+    // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
+    // post: removes value at the given index, shifting subsequent values left
+    public void remove(int index) {
+        super.checkIndex(index);
+        for (int i = index; i < this.size - 1; i++) {
+            elementData[i] = elementData[i + 1];
+        }
+        elementData[size - 1] = null;
+        decreaseSize();
+    }
 
     // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
     // post: replaces the value at the given index with the given value
     public void set(int index, E value) {
         super.checkIndex(index);
         elementData[index] = value;
+    }
+
+    // post: list is empty
+    public void clear() {
+        for (int i = 0; i < this.size; i++) {
+            elementData[i] = null;
+        }
+        this.size = 0;
+    }
+
+    // post: appends all values in the given list to the end of this list
+    public void addAll(List<E> other) {
+        for (E value: other) {
+            add(value);
+        }
     }
 
     // post: returns an iterator for this list
@@ -80,13 +105,10 @@ public class ArrayList<E> extends AbstractList<E> implements List<E>{
     }
 
 
-
-     //------------------------------------------------Andy's Methods Start-----------------------------------------------------------
     private class ArrayListIterator implements Iterator<E> {
         private int position;           // current position within the list
         private boolean removeOK;       // whether it's okay to remove now
 
-        
         // post: constructs an iterator for the given list
         public ArrayListIterator() {
             position = 0;
@@ -95,7 +117,7 @@ public class ArrayList<E> extends AbstractList<E> implements List<E>{
 
         // post: returns true if there are more elements left, false otherwise
         public boolean hasNext() {
-            return position < super.size;
+            return position < size();
         }
 
         // pre : hasNext() (throws NoSuchElementException if not)
@@ -117,11 +139,7 @@ public class ArrayList<E> extends AbstractList<E> implements List<E>{
             if (!removeOK) {
                 throw new IllegalStateException();
             }
-            for (int i = position ; i < size - 1; i++) {
-            elementData[i] = elementData[i + 1];
-            }
-            elementData[size - 1] = null;
-            decreaseSize();
+            ArrayList.this.remove(position - 1);
             position--;
             removeOK = false;
         }
