@@ -5,8 +5,6 @@ Created for ch16, programming project 3.*/
 //compiler directive to eliminate superfluous warnings.
 @SuppressWarnings("unchecked")
 
-import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class ListClientTest {
 	public static void main(String[] args) {
@@ -15,10 +13,10 @@ public class ListClientTest {
       LinkedList<Integer> list2 = new LinkedList<Integer>();
       
       // declares our string lists
-		ArrayList<Integer> list3 = new ArrayList<Integer>();
-      LinkedList<Integer> list4 = new LinkedList<Integer>();
+		ArrayList<String> list3 = new ArrayList<String>();
+      LinkedList<String> list4 = new LinkedList<String>();
       
-      // tests our AbstractList methods in ArrayList
+      //tests our AbstractList methods in ArrayList
       System.out.println("Testing for ArrayList."); 
 		System.out.println("Test 1: The ArrayList is empty: " + list1.isEmpty()); //test: true
       System.out.println("Test 2: The ArrayList size is: " + list1.size()); //test: null
@@ -70,7 +68,7 @@ public class ListClientTest {
 		System.out.println("Test 2: The List size is: " + list.size()); //test: 4
 		System.out.println("Test 4: List contains 42: " + list.contains(42)); //test: true
       System.out.println("Test 4: List contains 2: " + list.contains(2)); //test: false
-		//list.remove(2);
+		list.remove(2);
 		System.out.println("Test 6: List after removing number at index 2"); //test:
 		System.out.println(list.toString());
       list.clear();
