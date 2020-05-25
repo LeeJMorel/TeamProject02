@@ -2,7 +2,6 @@
 This is the abstract list class.
 Created for ch16, programming project 3.*/
 import java.util.*;
-import java.io.*;
 
 public abstract class AbstractList<E> implements List<E> {
    protected int size;        // current number of elements in the list
@@ -71,29 +70,6 @@ public abstract class AbstractList<E> implements List<E> {
         }
     }
     
-    //test6
-    // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
-    // post: removes value at the given index, shifting subsequent values left
-    public void remove(int index) {
-        checkIndex(index);
-        Iterator<E> i = this.iterator();
-        
-        for (int j = 0; j >= index; j++) {
-             i.next();
-        }
-        i.remove();
-        size--;
-    }
-    
-    //test 7
-    // post: list is empty
-    public void clear() {
-      Iterator<E> i = this.iterator();
-        while (i.hasNext()) {
-            i.remove();
-        }
-        size = 0;
-    }
     
     
     
