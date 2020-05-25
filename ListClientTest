@@ -2,51 +2,86 @@
 This is the Test client for our AbstractList class.
 Created for ch16, programming project 3.*/
 
-//compiler directive to eliminate superfluous warnings.
-@SuppressWarnings("unchecked")
-
-import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class ListClientTest {
-	public static void main(String[] args) {
-		// declares our integer lists
-		ArrayList<Integer> list1 = new ArrayList<Integer>();
-      LinkedList<Integer> list2 = new LinkedList<Integer>();
+	public static void main(String[] args) 
+	{
+	  // declares our integer lists
+	  AbstractList<Integer> list1 = new ArrayList<Integer>();
+      AbstractList<Integer> list2 = new LinkedList<Integer>();
       
       // declares our string lists
-		ArrayList<Integer> list3 = new ArrayList<Integer>();
-      LinkedList<Integer> list4 = new LinkedList<Integer>();
-      
+	  AbstractList<String> list3 = new ArrayList<String>();
+      AbstractList<String> list4 = new LinkedList<String>();
+ 
       // tests our AbstractList methods in ArrayList
-      System.out.println("Testing for ArrayList."); 
-		System.out.println("Test 1: The ArrayList is empty: " + list1.isEmpty()); //test: true
-      System.out.println("Test 2: The ArrayList size is: " + list1.size()); //test: null
-		processIntList(list1);
-      processStringList(list3);
-      System.out.println("\nInt based testing for ArrayList below:"); 
-      testIntList(list1);
-      System.out.println("\nString based testing for ArrayList below:"); 
-      testStringList(list3);
-      System.out.println("\n"); 
-
-		
-
-      // tests our AbstractList methods in LinkedList
-      System.out.println("Testing for LinkedList."); 
-		System.out.println("Test 1: The LinkedList is empty: " + list2.isEmpty()); //test: true
-      System.out.println("Test 2: The LinkedList size is: " + list2.size()); //test: null
-		processIntList(list2);
-      processStringList(list4);
-      System.out.println("\nInt based testing for LinkedList below:"); 
-      testIntList(list2);
-      System.out.println("\nString based testing for LinkedList below:"); 
-      testStringList(list4);
+      System.out.println("Testing for ArrayList:\n"); 
+      System.out.println("Before Additions: ");
+      System.out.println("The ArrayList is empty: " + list1.isEmpty()); //test: true
+      System.out.println("The ArrayList size is: " + list1.size()); //test: null
       
+      System.out.println("\nThe String ArrayList is empty: " + list3.isEmpty()); //test: true
+      System.out.println("The String ArrayList size is: " + list3.size()); //test: null
+      
+      System.out.println("\nProcessing Lists...");
+      processIntList(list1);
+      
+      System.out.println("Int List: "+list1);
+   
+      processStringList(list3);
+      
+      System.out.println("String List: "+list3);
+      
+      System.out.println("\nLists optimized...");
+      System.out.println("\nInt based testing for ArrayList below:\n"); 
+      testIntList(list1);
+      System.out.println("\nInt List testing complete.");
+      
+      
+      System.out.println("\nString based testing for ArrayList below:\n"); 
+      testStringList(list3);
+      System.out.println("\nString ArrayList testing complete."); 
+      
+      
+      System.out.println("\n"); 
+      
+      
+      System.out.println("Testing for LinkedList:\n"); 
+      System.out.println("Before Additions: ");
+      System.out.println("The Int LinkedList is empty: " + list2.isEmpty()); //test: true
+      System.out.println("The Int LinkedList size is: " + list2.size()); //test: null
+      
+      System.out.println("\nThe String LinkedList is empty: " + list4.isEmpty()); //test: true
+      System.out.println("The String LinkedList size is: " + list4.size()); //test: null
+      
+
+      
+      System.out.println("\nProcessing Lists...");
+      processIntList(list2);
+      
+      System.out.println("Int List: "+list2);
+   
+      processStringList(list4);
+      
+      System.out.println("String List: "+list4);
+      
+      System.out.println("\nLists optimized...");
+      System.out.println("\nInt based testing for LinkedList below:\n"); 
+      testIntList(list2);
+      System.out.println("\nInt LinkedList testing complete.");
+      
+      
+      System.out.println("\nString based testing for LinkedList below:\n"); 
+      testStringList(list4);
+      System.out.println("\nString LinkedList testing complete."); 
+
+      
+
 
 	}
 
-	public static void processIntList(List list) {
+	public static void processIntList(List<Integer> list) 
+	{
 		list.add(42);
 		list.add(18);
 		list.add(27);
@@ -54,7 +89,8 @@ public class ListClientTest {
 
 	}
    
-   public static void processStringList(List list) {
+   public static void processStringList(List<String> list) 
+   {
 		list.add("apple");
 		list.add("pear");
 		list.add("cherry");
@@ -62,35 +98,128 @@ public class ListClientTest {
 
 	}
    
-   public static void testIntList(List list) {
-		System.out.println("Test 5: The List converted to string (42,18,27,93): ");
-      System.out.println(list.toString());
-      System.out.println("Test 1: The List is empty. " + list.isEmpty()); //test: false
-		System.out.println("Test 3: The List contains 93 at index: " + list.indexOf(93)); //test: 3
-		System.out.println("Test 2: The List size is: " + list.size()); //test: 4
-		System.out.println("Test 4: List contains 42: " + list.contains(42)); //test: true
-      System.out.println("Test 4: List contains 2: " + list.contains(2)); //test: false
-		//list.remove(2);
-		System.out.println("Test 6: List after removing number at index 2"); //test:
-		System.out.println(list.toString());
-      list.clear();
-		System.out.println("Test 7: The List is empty(clear method). " + list.isEmpty()); //test: true
-      System.out.println(); 
+   public static <E> void testIntList(AbstractList<Integer> list) 
+   {
+	   
+	  System.out.println("\tTest 1: The printed List (42,18,27,93): " + list.toString());
+     
+      System.out.println("\n\tTest 2: The List is empty: " + list.isEmpty()); //test: false
+      
+	  System.out.println("\n\tTest 3: The List contains 93 at index: " + list.indexOf(93)); //test: 3
+	  
+  	  System.out.println("\n\tTest 4: The List size is: " + list.size()); //test: 4
+  	  
+	  System.out.println("\n\tTest 5: List contains 42: " + list.contains(42)); //test: true
+		
+      System.out.println("\n\tTest 6: List contains 2: " + list.contains(2)); //test: false
+
+      list.remove(2); System.out.print("\n\tTest 7: List after removing number at index 2: " + list.toString()); //test:[42, 18, 93]
+     
+      try 
+      {
+        list.clear();  
+      }
+      catch(IllegalStateException e)
+      {
+        System.out.println("\n\n\tTest 8: The List is empty(clear method). " + e); //test: true
+      }	
+
 	}
    
-   public static void testStringList(List list) {
-      System.out.println("Test 5: The List converted to string (apple, pear, cherry, orange): ");
-		System.out.println(list.toString());
-      System.out.println("Test 1: The List is empty. " + list.isEmpty()); //test: false
-		System.out.println("Test 3: The List contains cherry at index: " + list.indexOf("cherry")); //test: 3
-		System.out.println("Test 2: The List size is: " + list.size()); //test: 4
-		System.out.println("Test 4: List contains pear: " + list.contains("pear")); //test: true
-      System.out.println("Test 4: List contains grape: " + list.contains("grape")); //test: false
-		list.remove(2);
-		System.out.println("Test 6: List after removing cherry at index 2"); //test:
-		System.out.println(list.toString());
-      list.clear();
-		System.out.println("Test 7: The List is empty(clear method). " + list.isEmpty()); //test: true
-      System.out.println(); 
+   
+   
+   public static <E> void testStringList(AbstractList<String> list) 
+   {
+	   System.out.println("\tTest 1: The printed List (apple, pear, cherry, orange): " + list.toString());
+	     
+	      System.out.println("\n\tTest 2: The List is empty: " + list.isEmpty()); //test: false
+	      
+		  System.out.println("\n\tTest 3: The List contains cherry at index: " + list.indexOf("cherry")); //test: 2
+		  
+	  	  System.out.println("\n\tTest 4: The List size is: " + list.size()); //test: 4
+	  	  
+		  System.out.println("\n\tTest 5: List contains pear: " + list.contains("pear")); //test: true
+			
+	      System.out.println("\n\tTest 6: List contains grape: " + list.contains("grape")); //test: false
+	      
+	      list.remove(2); System.out.print("\n\tTest 7: List after removing number at index 2: " + list.toString()); //test:[apple, pear, orange]
+	    
+	      try 
+	      {
+	        list.clear();  
+	      }
+	      catch(IllegalStateException e)
+	      {
+	       	System.out.println("\n\n\tTest 8: The List is empty(clear method). " + e); //test: true
+	      }
 	}
+   
+   
+   
+/*                                       *Excess code use for debugging activities placed in main method* 
+ //Int Testing
+      
+       //ArrayList
+       list1.add(5);list1.add(7); System.out.println(list1.toString()); //works
+       System.out.println(list1.indexOf(5)); //works
+       System.out.println(list1.contains(5)); //works
+       System.out.println(list1.isEmpty()); //works
+       System.out.println(list1.size()); //works
+      // list1.clear();
+       list1.remove(0);System.out.println(list1.toString()); 
+      
+
+
+       //LinkedList
+       System.out.println(list2.toString());
+       list2.add(6);list2.add(8);// System.out.println(list2.toString());
+      
+        System.out.println(list2.indexOf(6));
+     //  System.out.println(list2.contains(6));
+       
+     //  System.out.println(list2.remove(6));
+       
+       System.out.println();
+     
+     
+       //Both Int Lists
+       list2.addAll(list1);
+       System.out.println(list2.toString());
+       System.out.println(list1.toString());
+       
+       list1.clear();System.out.println(list1.toString());
+       list2.clear();System.out.println(list2.toString());
+       
+       System.out.println("\n");
+       
+ //String Lists
+       //ArrayList
+       list3.add("Apples");
+       System.out.println(list3.toString());
+       System.out.println(list3.indexOf("Apples"));
+       System.out.println(list3.contains("Apples"));
+       
+       list3.remove(0);System.out.println(list3.toString());
+       
+       System.out.println();
+       
+       //LinkedList
+       list4.add("Bananas");
+       System.out.println(list4.toString());
+       System.out.println(list4.indexOf("Bananas"));
+       System.out.println(list4.contains("Bananas"));
+       
+       list4.remove(0);System.out.println(list4.toString());
+       
+       System.out.println();
+       
+       //Both String Lists
+       list3.addAll(list4);
+       System.out.println(list3.toString());
+       System.out.println(list4.toString());
+       
+       list3.clear();System.out.println(list3.toString());
+       list4.clear();System.out.println(list4.toString());
+ */
+
 }
